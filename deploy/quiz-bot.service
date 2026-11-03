@@ -1,0 +1,19 @@
+[Unit]
+Description=Telegram Quiz Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=quizbot
+WorkingDirectory=/opt/tg-quiz-bot
+EnvironmentFile=/opt/tg-quiz-bot/.env
+ExecStart=/opt/tg-quiz-bot/.venv/bin/python /opt/tg-quiz-bot/bot.py
+Restart=always
+RestartSec=5
+TimeoutStopSec=20
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

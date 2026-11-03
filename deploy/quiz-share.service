@@ -1,0 +1,26 @@
+[Unit]
+Description=Telegram Quiz Prepared Share App
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=quizbot
+Group=quizbot
+WorkingDirectory=/opt/tg-quiz-bot
+EnvironmentFile=/opt/tg-quiz-bot/.env
+Environment=SHARE_APP_HOST=0.0.0.0
+Environment=SHARE_APP_PORT=8443
+Environment=SHARE_APP_CERT=/etc/quiz-share/fullchain.pem
+Environment=SHARE_APP_KEY=/etc/quiz-share/privkey.pem
+ExecStart=/opt/tg-quiz-bot/.venv/bin/python /opt/tg-quiz-bot/share_app.py
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/tg-quiz-bot
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily backup timer for quiz bot
+
+[Timer]
+OnCalendar=*-*-* 03:30:00
+Persistent=true
+Unit=quiz-bot-backup.service
+
+[Install]
+WantedBy=timers.target

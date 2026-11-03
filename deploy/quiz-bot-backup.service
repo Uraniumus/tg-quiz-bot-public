@@ -1,0 +1,10 @@
+[Unit]
+Description=Backup SQLite database for quiz bot
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=quizbot
+WorkingDirectory=/opt/tg-quiz-bot
+EnvironmentFile=/opt/tg-quiz-bot/.env
+ExecStart=/opt/tg-quiz-bot/scripts/backup_db.sh
